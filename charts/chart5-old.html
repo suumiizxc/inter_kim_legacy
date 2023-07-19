@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- Styles -->
+<style>
+    #chartdiv {
+      width: 100%;
+      max-width: 100%;
+      height: 95vh;
+    }
+    </style>
+    
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    
+    <!-- Chart code -->
+    <script>
+    am5.ready(function() {
+    
+    // Create root element
+    // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+    var root = am5.Root.new("chartdiv");
+    
+    // Set themes
+    // https://www.amcharts.com/docs/v5/concepts/themes/
+    root.setThemes([
+      am5themes_Animated.new(root)
+    ]);
+    
+    var data = {
+      value: 0,
+      children: [
+        {
+            name : "[fontStyle:oblique]Монголын Ипотекийн \nКорпораци ОССК ХХК",
+            children : [
+                {
+                    name : "[fontStyle:oblique]МИК Холдинг ХК",
+                    value : 892927,
+                }
+            ]
+        },
+        {
+          name: "[fontStyle:oblique]МИК Актив Нэг ТЗК ХХК",
+          children : [
+              {
+                  name : "[fontStyle:oblique]Монголын Ипотекийн \nКорпораци ОССК ХХК",
+                  children : [
+                      {
+                          name : "[fontStyle:oblique]МИК Холдинг ХК",
+                          value : 892927,
+                      }
+                  ]
+              }
+          ]
+        },
+        {
+          name: "[fontStyle:oblique]МИК Актив Хоёр ТЗК ХХК",
+          children : [
+              {
+                  name : "[fontStyle:oblique]Монголын Ипотекийн \nКорпораци ОССК ХХК",
+                  children : [
+                      {
+                          name : "[fontStyle:oblique]МИК Холдинг ХК",
+                          value : 432712,
+                      }
+                  ]
+              }
+          ]
+        },
+        {
+            name : "[fontStyle:oblique]Монгол улсын хөгжлийн банк",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Монгол улсын Засгийн газар",
+                    value : 3081955,
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Худалдааа хөгжлийн банк",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Глобулл Инвестмент & Девелопмент ЭсСиЭй",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Д.Эрдэнэбилэг",
+                            value : 103381,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Юу Эс Глобал Инвестмент",
+                            children : [
+                                {
+                                    name : "[fontStyle:oblique]Д.Эрдэнэбилэг",
+                                    value : 1222016,
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Юнайтед бэнкинг корпорэйшн  ХХК",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Си Эн Би Консалтинг",
+                            children : [
+                                {
+                                    name : "[fontStyle:oblique]Ти Ди Би Капитал Сингапур",
+                                    children : [
+                                        {
+                                            name : "[fontStyle:oblique]Э.Тулга",
+                                            value : 647166
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Юу Эс Монголиа Инвестмент Лимитэд",
+                    value : 67927,
+                },
+                {
+                    name : "[fontStyle:oblique]Бусад хувьцаа эзэмшигч",
+                    value : 30443,
+                },
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Ти Ди Би Cекьюритис ҮЦК ХХК",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Юнайтед бэнкинг корпорэйшн  ХХК",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Си Эн Би Консалтинг",
+                            children : [
+                                {
+                                    name : "[fontStyle:oblique]Ти Ди Би Капитал Сингапур",
+                                    children : [
+                                        {
+                                            name : "[fontStyle:oblique]Э.Тулга",
+                                            value : 796016,
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Си Эн Би Консалтинг",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Ти Ди Би Капитал Сингапур",
+                            children : [
+                                {
+                                    name : "[fontStyle:oblique]Э.Тулга",
+                                    value : 301937,
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Голомт банк",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Голомт Файнэншил Групп ХХК",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Д.Баясгалан",
+                            value : 926140,
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Свисс-Мо Инвестмэнт Эй Жи",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Урс Э.Шварценбах ",
+                            value : 63341,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Гаи Шварценбах",
+                            value : 640,
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Голомт Инвестмэнт Лимитэд",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Д.Баясгалан",
+                            value : 31530,
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Голомт банкны ажилтнууд",
+                    value : 2047,
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Төрийн банк",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Сангийн яам",
+                    value : 254432,
+                },
+                {
+                    name : "[fontStyle:oblique]Хадгаламжийн даатгалын корпораци",
+                    value : 232519,
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Капитрон банк",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Ажнай корпораци ХХК",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Д.Бат-Эрдэнэ",
+                            value : 81156
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Д.Бат-Эрдэнэ",
+                    value : 48382,   
+                },
+                {
+                    name : "[fontStyle:oblique]Д.Эрдэнэбаяр",
+                    value : 35365,
+                }, 
+                {
+                    name : "[fontStyle:oblique]Д.Мөнхсайхан",
+                    value : 35196,
+                },
+                {
+                    name : "[fontStyle:oblique]Ч.Амарбаатар",
+                    value : 10532,
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Хаан банк",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Эйч Эс Холдингс ХК",
+                    value : 95938,
+                },
+                {
+                    name : "[fontStyle:oblique]Таван Богд Трейд ХХК",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Ц.Баатарсайхан",
+                            value : 31985,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Д.Хулан",
+                            value : 10662,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Ц.Оюунцэцэг",
+                            value : 5331,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Ц.Оюунсүрэн",
+                            value : 2665,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Ц.Оюунжав",
+                            value : 2665
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Д.Хулан",
+                    value : 30940,
+                },
+                {
+                    name : "[fontStyle:oblique]Эйч Эс Интернэйшнл Лимитед",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Эйч Эс Холдингс ХК",
+                            value : 20557,
+                        }
+                    ]
+                },
+                {
+                    name : "[fontStyle:oblique]Хаан банкны ажилтнууд",
+                    value : 9878,
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Хас банк",
+            children : [
+                {
+                    name : "[fontStyle:oblique]ТэнГэр санхүүгийн нэгдэл",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Монголын Алт /МАК/ ХХК",
+                            value : 42124,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Олон улсын санхүүгийн корпораци",
+                            value : 36164,
+                        },
+                        {
+                            name : "[fontStyle:oblique]ОРИКС Корпораци",
+                            value : 35405,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Европын сэргээн босголт хөгжлийн банк",
+                            value : 27191,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Канадын үндэсний банк",
+                            value : 22157,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Ронок Партнерз",
+                            value : 21378,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Монголия Оппортунитиз партнес",
+                            value : 13964,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Триодос фэйр шэйр фанд",
+                            value : 7856,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Нээлттэй нийгэм форум ТББ",
+                            value : 3349,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Улаанбаатар ротари клуб ТББ",
+                            value : 632,
+                        },
+                        {
+                            name : "[fontStyle:oblique]М.Болдоо",
+                            value : 211,
+                        },
+                        {
+                            name : "[fontStyle:oblique]Ч.Ганболд",
+                            value : 190,
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Си Эн Би Консалтинг",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Ти Ди Би Капитал Сингапур",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Э.Тулга",
+                            value : 2608480,
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name : "[fontStyle:oblique]Азиа Дайверсифайд Рийл Истэйт Фанд Нэг Хувийн ХОС",
+            value : 2312500,
+        },
+        {
+            name : "[fontStyle:oblique]Юнайтед бэнкинг корпорэйшн  ХХК",
+            children : [
+                {
+                    name : "[fontStyle:oblique]Си Эн Би Консалтинг",
+                    children : [
+                        {
+                            name : "[fontStyle:oblique]Ти Ди Би Капитал Сингапур",
+                            children : [
+                                {
+                                    name : "[fontStyle:oblique]Э.Тулга",
+                                    value : 1232785,
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        // {
+        //     name : "[fontStyle:oblique]Си И Си Групп",
+        //     value : 488750,
+        // },
+        // {
+        //     name : "[fontStyle:oblique]Нексус Финанс Инвестмент",
+        //     value : 129998,
+        // },
+        {
+            name : "[fontStyle:oblique]Бусад",
+            value : 19376 + 488750 + 129998,
+        }
+      ]
+    };
+    
+    // Create wrapper container
+    var container = root.container.children.push(am5.Container.new(root, {
+      width: am5.percent(100),
+      height: am5.percent(100),
+      layout: root.verticalLayout
+    }));
+    
+    // Create series
+    // https://www.amcharts.com/docs/v5/charts/hierarchy/#Adding
+    var series = container.children.push(am5hierarchy.ForceDirected.new(root, {
+      singleBranchOnly: false,
+      downDepth: 2,
+      topDepth: 1,
+      initialDepth: 0,
+      valueField: "value",
+      categoryField: "name",
+      childDataField: "children",
+      idField: "name",
+      linkWithField: "linkWith",
+      manyBodyStrength: -10,
+      centerStrength: 0.8
+    }));
+    
+    series.get("colors").setAll({
+      step: 2
+    });
+    
+    series.links.template.set("strength", 0.5);
+    
+    series.data.setAll([data]);
+    
+    series.set("selectedDataItem", series.dataItems[0]);
+    
+    
+    // Make stuff animate on load
+    series.appear(1000, 100);
+    
+    }); // end am5.ready()
+    </script>
+    
+<body>
+    <div id="chartdiv"></div>
+</body>
+</html>

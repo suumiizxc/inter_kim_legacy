@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #chartdiv {
+      width: 100%;
+      height: 400px;
+    }
+    </style>
+    
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    
+    <!-- Chart code -->
+    <script>
+    am5.ready(function() {
+    
+    // Set up data
+    var text_data = [
+      { "id" : 1,
+        "value": "Монгол шуудан банк ➡️ Хадгаламж банк",
+        "inner_text": "Хоёр банк нэгдсэнтэй холбоотойгоор хадгаламж банк руу шилжсэн."
+      },
+      {
+        "id" : 2,
+        "value": "Зоос банк ➡️ Төрийн банк",
+        "inner_text": "Зоос банк татан буугдсантай холбоотойгоор тус банкны хувьцаа Төрийн банканд шилжсэн."
+      },
+      {
+        "id" : 3,
+        "value": "Анод банк ➡️ Монгол банк",
+        "inner_text": "Анод банк татан буугдсантай холбоотойгоор тус банкны хувьцаа Монгол банканд шилжсэн"
+      },
+      {
+        "id" : 4,
+        "value": "МИК ➡️ УБ ББСБ",
+        "inner_text": "Улаанбаатар Капитал ББСБ нь хувьцаа эзэмшигчдийн бүтцэд шинээр орж ирсэн."
+      },
+      {
+        "id" : 5,
+        "value": "УБ ББСБ ➡️ Улаанбаатар хотын банк",
+        "inner_text": "Хувьцаа эзэмшигчдийн гэрээний дагуу тус компанийн хувьцаа Улаанбаатар хотын банканд шилжсэн."
+      },
+      {
+        "id" : 6,
+        "value": "Хадгаламж банк ➡️ Төрийн банк",
+        "inner_text": "Монгол банкны ерөнхийлэгчийн шийдвэрт үндэслэн Хадгаламж банкны хувь эзэмшил Төрийн банк руу шилжсэн."
+      },
+      {
+        "id" : 7,
+        "value": "Улаанбаатар хотын банк ➡️ Юнайтед секьюритис",
+        "inner_text": "Улаанбаатар хотын банк өөрийн эзэмшигчдийн хувьцаанаас Юнайтед секьюритис ХХК-д шилжүүлсэнээр тус байгууллага хувьцаа эзэмшигчдийн бүтцэд шинээр орж ирсэн."
+      },
+      {
+        "id" : 8,
+        "value": "МИК ОССК ХХК ➡️ Чингис хаан банк",
+        "inner_text": "Худалдагдаагүй үлдсэн компанийн хувьцаанаас Чингис хаан банк худалдан авч шинэ хувьцаа эзэмшигч болсон."
+      },
+      {
+        "id" : 9,
+        "value": "Монгол улсын Хөгжлийн банк \n хувьцаа эзэмшигчээр орж ирэв",
+        "inner_text": `Монгол Улсын Засгийн Газрын "Ипотекийн хоёрдогч зах зээлийг хөгжүүлэх тухай" тогтоолоор Ипотекийн хоёрдогч зах зээлийг хөгжүүлэх замаар иргэдийг орон сууцжуулах зорилгоор МИК ОССК ХХК-д тодорхой хувь эзэмших нь зүйтэй гэж үзэж МИК ОССК ХХК-д Монгол Улсын Хөгжлийн банкны эх үүсвэрээр 10 тербум хүртэлх төгрөг зарцуулахыг зөвшөөрсөний үндсэн дээр МИК ОССК ХХК болон Монгол Улсын Хөгжлийн банкны хооронд байгуулагдсан гэрээний дагуу шинээр хувьцаа эзэмшигч болж байсан.`
+      },
+      {
+        "id" : 10,
+        "value": "МИК ХОЛДИНГ ХК ➡️ Ти Ди Би секьюритис ХХК",
+        "inner_text": `Монгол Улсын "Үнэт цаасны зах зээлийн тухай хууль"-д заасны дагуу хөрөнгийн зах зээлд нийт худалдагдаагүй үлдсэн хувьцааг тухай үеийн үнэт цаас гаргагчийн андеррайтер болох Ти Ди Би секьюритис ХХК авч хувьцаа эзэмшигчдийн бүтцэд шинээр орж ирсэн.`
+      },
+      {
+        "id" : 11,
+        "value": "Худалдаа хөгжлийн банк ➡️ МИК ОССК",
+        "inner_text": "МИК ОССК ХХК нь толгой компанийн хувьцаа эзэмшигчдийн төвлөрөлийг багасгах, хувьцааны зах зээл дэх үнийн тогтвортой байдлыг хангах, гадны хөрөнгө оруулалт татах бэлтгэл ажлыг эхлүүлэх зорилгоор өөрийн санхүүжилтээр дээрх хувьцаа эзэмшигчдийн хувьцааны тодорхой хэсгийг худалдаж авсан. "
+      },
+      {
+        "id" : 12,
+        "value": "Улаанбаатар хотын банк ➡️ МИК ОССК",
+        "inner_text": "МИК ОССК ХХК нь толгой компанийн хувьцаа эзэмшигчдийн төвлөрөлийг багасгах, хувьцааны зах зээл дэх үнийн тогтвортой байдлыг хангах, гадны хөрөнгө оруулалт татах бэлтгэл ажлыг эхлүүлэх зорилгоор өөрийн санхүүжилтээр дээрх хувьцаа эзэмшигчдийн хувьцааны тодорхой хэсгийг худалдаж авсан."
+      },
+      {
+        "id" : 13,
+        "value": "Худалдаа хөгжлийн банк ➡️ МИК ОССК",
+        "inner_text": "Компанийн засаглалыг сайжируулах зорилтын хүрээнд МИК ХОЛДИНГ ХК-ийн хувьцаа эзэмшигчдийн бүтцэд хорь хүртэлх хувийг олон улсын банк санхүүгийн байгууллагад эзэмшүүлэх нь компанийн хөгжлийг олон улсын шатанд гаргахад чиглэсэн стратегийн ач холбогдолтой гэж тодорхойлсон. Үүний хүрээнд компанийн нөлөө бүхий хувьцаа эзэмшигчдэд тэдгээрийн эзэмшиж буй хувьцааг худалдан авах саналыг МИК ОССК ХХК-иас гаргасан. Хувьцаа эзэмшигчдээс ирүүлсэн саналыг тухайн үед хамгийн их хувьцаа эзэмшиж байсан дарааллаар авч хэлэлцээд, тус компанийн хувьцаанаас худалдан авахаар шийдвэрлэсэн."
+      },
+      {
+        "id" : 14,
+        "value": "Улаанбаатар хотын банк ➡️ МИК ОССК",
+        "inner_text": "Компанийн засаглалыг сайжируулах зорилтын хүрээнд МИК ХОЛДИНГ ХК-ийн хувьцаа эзэмшигчдийн бүтцэд хорь хүртэлх хувийг олон улсын банк санхүүгийн байгууллагад эзэмшүүлэх нь компанийн хөгжлийг олон улсын шатанд гаргахад чиглэсэн стратегийн ач холбогдолтой гэж тодорхойлсон. Үүний хүрээнд компанийн нөлөө бүхий хувьцаа эзэмшигчдэд тэдгээрийн эзэмшиж буй хувьцааг худалдан авах саналыг МИК ОССК ХХК-иас гаргасан. Хувьцаа эзэмшигчдээс ирүүлсэн саналыг тухайн үед хамгийн их хувьцаа эзэмшиж байсан дарааллаар авч хэлэлцээд, тус компанийн хувьцаанаас худалдан авахаар шийдвэрлэсэн."
+      },
+      {
+        "id" : 15,
+        "value": "Улаанбаатар хотын банк ➡️ Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК",
+        "inner_text": "Тус банк өөрийн эзэмшигчдийн хувьцаанаас Монголын Хөрөнгийн биржээр дамжуулан багцийн арилжаагаар Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК худалдсан."
+      },
+      {
+        "id" : 16,
+        "value": "Капитал банк ➡️ Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК",
+        "inner_text": "Капитал банк нь өөрийн хувьцаанаас тус байгууллагад биржийн бус арилжаагаар шилжүүлсэн."
+      },
+      {
+        "id" : 17,
+        "value": "Капитал банк ➡️ МИК АКТИВ 2 ТЗК",
+        "inner_text": "Капитал банк нь өөрийн хувьцаанаас тус байгууллагад биржийн бус арилжаагаар шилжүүлж компанийн хувьцаа эзэмшигчдийн бүтцээс гарсан."
+      },
+      {
+        "id" : 18,
+        "value": "Капитал банк ➡️ МИК АКТИВ 1 ТЗК",
+        "inner_text": "Капитал банк нь өөрийн хувьцаанаас тус байгууллагад биржийн бус арилжаагаар шилжүүлж компанийн хувьцаа эзэмшигчдийн бүтцээс гарсан."
+      },
+      {
+        "id" : 19,
+        "value": "Голомт банк ➡️ Нэксус финанс инвестмент ХХК",
+        "inner_text": "Тус банк өөрийн эзэмшилд байсан хувьцаанаас тодорхой хэсгийг Нэксус финанс инвестмент ХХК шилжүүлсэнээр тус компани хувьцаа эзэмшигчдийн бүтцэд шинээр орж ирсэн."
+      },
+      {
+        "id" : 20,
+        "value": "Улаанбаатар хотын банк ➡️ Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК",
+        "inner_text": `"Монгол УлсынБанкны тухай хууль"-д тусгагдсан хязгаарлалтад үндэслэн өөрийн эзэмшигчдийн хувьцааг Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК худалдсан.`
+      },
+      {
+        "id" : 21,
+        "value": "Улаанбаатар хотын банк ➡️ Си И Си Групп ХХК",
+        "inner_text": `"Монгол Улсын Банкны тухай хууль"-д тусгагдсан хязгаарлалтад үндэслэн өөрийн эзэмшигчдийн хувьцааг Си И Си Групп ХХК худалдсан.`
+      },
+      {
+        "id" : 22,
+        "value": "Улаанбаатар хотын банк ➡️ Си Эн Би Коансалтинг ХХК",
+        "inner_text": `"Монгол Улсын Банкны тухай хууль"-д тусгагдсан хязгаарлалтад үндэслэн өөрийн эзэмшигчдийн хувьцааг Си Эн Би Коансалтинг ХХК худалдсан.`
+      },
+      {
+        "id" : 23,
+        "value": "Улаанбаатар хотын банк ➡️ Худалдаа хөгжлийн банк",
+        "inner_text": "Монгол банкны шийдвэрээр хоёр банк нэгдсэнтэй холбоотойгоор Улаанбаатар хотын банкны хувьцааг Худалдаа хөгжлийн банканд бүрэн шилжсэн."
+      },
+      {
+        "id" : 24,
+        "value": "Монгол банк ➡️ Ти Ди Би секьюритис ХХК",
+        "inner_text": "Ти Ди Би секьюритис ХХК нь Монгол банкны хувьцааг шилжүүлэн авсанаар Монгол банк эзэмшигчдийн бүтцээс гарсан."
+      },
+      {
+        "id" : 25,
+        "value": "Хувь хүн ➡️ Ти Ди Би секьюритис ХХК",
+        "inner_text": "Ти Ди Би секьюритис ХХК нь Хувь хувьцаа эзэмшигчдээс хувьцаа худалдаж авсан."
+      },
+      {
+        "id" : 26,
+        "value": "Ти Ди Би секьюритис ХХК Юнайтэд бэнкинг корпорэйшн",
+        "inner_text": "Ти Ди Би секьюритис ХХК нь Юнайтэд бэнкинг корпорэйшн ХХК-д хувьцааны тодорхой хэсгийг шилжүүлсэнээр тус байгууллага хувьцаа эзэмшигчдийн бүтцэд шинээр орж ирсэн."
+      },
+      {
+        "id" : 27,
+        "value": "Худалдаа хөгжлийн банк ➡️ Си Эн Би Консалтинг ХХК",
+        "inner_text": "Худалдаа хөгжлийн банк өөрийн эзэмшилийн хувьцааны тодорхой хэсгийг Си Эн Би Консалтинг ХХК-д багцийн арилжаагаар шилжүүлсэнээр тус байгууллага компанийн нөлөө бүхий хувьцаа эзэмшигчдийн бүтцэд шинээр нэмэгдсэн."
+      }
+    ];
+
+    var data = [{
+      category: "2010",
+      value: 1,
+      sliceSettings: {
+        fill: am5.color(0xdc4534),
+      },
+      breakdown: [{
+        category: "Монгол шуудан банк ➡️ Хадгаламж банк",
+        value: 201000,
+        id : 1,
+      }, {
+        category: "Зоос банк ➡️ Төрийн банк",
+        value: 201000,
+        id : 2,
+      },]
+    }, {
+      category: "2011",
+      value: 1,
+      sliceSettings: {
+        fill: "#8bb3c3",
+      },
+      breakdown: [{
+        category: "Анод банк ➡️ Монгол банк",
+        value: 201000,
+        id : 3,
+      }, 
+      {
+        category : "МИК ➡️ УБ ББСБ",
+        value : 1107326,
+        id : 4,
+      }
+    ]
+    }, 
+    {
+      category: "2012",
+      value: 1,
+      sliceSettings: {
+        fill: "#a37d43",
+      },
+      breakdown: [{
+        category: "УБ ББСБ ➡️ Улаанбаатар хотын банк",
+        value: 1107326,
+        id : 5,
+      },]
+    }, 
+    {
+      category: "2013",
+      value: 1,
+      sliceSettings: {
+        fill: "#516d7e",
+      },
+      breakdown: [{
+        category: "Хадгаламж банк ➡️ Төрийн банк",
+        value: 201000,
+        id : 6,
+      },
+      {
+        category: "Улаанбаатар хотын банк ➡️ Юнайтед секьюритис",
+        value: 301071,
+        id : 7,
+      },
+      {
+        category: "МИК ОССК ХХК ➡️ Чингис хаан банк",
+        value: 50000,
+        id : 8,
+      }],
+    }, 
+    {
+      category: "2014",
+      value: 1,
+      sliceSettings: {
+        fill: "#989c9c",
+      },
+      breakdown: [{
+        category: "Монгол улсын Хөгжлийн банк \n хувьцаа эзэмшигчээр орж ирэв",
+        value: 2500000,
+        id : 9,
+      },],
+    },
+    {
+      category: "2015",
+      value: 1,
+      sliceSettings: {
+        fill: "#343434",
+      },
+      breakdown: [{
+        category: "МИК ХОЛДИНГ ХК ➡️ Ти Ди Би секьюритис ХХК",
+        value: 1559765,
+        id : 10,
+      },],
+    },
+    {
+      category: "2016",
+      value: 1,
+      sliceSettings: {
+        fill: "#00687a",
+      },
+      breakdown: [{
+        category: "Худалдаа хөгжлийн банк ➡️ МИК ОССК",
+        value: 1033395,
+        id : 11,
+      },{
+        category: "Улаанбаатар хотын банк ➡️ МИК ОССК",
+        value: 1033395,
+        id : 12,
+      },],
+    },
+    {
+      category: "2017",
+      value: 1,
+      sliceSettings: {
+        fill: "#c2bb1a",
+      },
+      breakdown: [{
+        category: "Худалдаа хөгжлийн банк ➡️ МИК ОССК",
+        value: 1035000,
+        id : 13,
+      },{
+        category: "Улаанбаатар хотын банк ➡️ МИК ОССК",
+        value: 1035000,
+        id : 14,
+      },],
+    },
+    {
+      category: "2018",
+      value: 1,
+      sliceSettings: {
+        fill: "#778714",
+      },
+      breakdown: [{
+        category: "Улаанбаатар хотын банк ➡️ Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК",
+        value: 1800075,
+        id : 15,
+      },{
+        category: "Капитал банк ➡️ Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК",
+        value: 356110,
+        id : 16,
+      },{
+        category: "Капитал банк ➡️ МИК АКТИВ 2 ТЗК",
+        value: 432712,
+        id : 17,
+      },{
+        category: "Капитал банк ➡️ МИК АКТИВ 1 ТЗК",
+        value: 892927,
+        id : 18,
+      },{
+        category: "Голомт банк ➡️ Нэксус финанс инвестмент ХХК",
+        value: 130000,
+        id : 19,
+      },
+    ],
+
+    },
+    {
+      category: "2019",
+      value: 1,
+      sliceSettings: {
+        fill: "#687a00",
+      },
+      breakdown: [{
+        category: "Улаанбаатар хотын банк ➡️ Азиа дайверсифайд рийл эстэйт фанд нэг хувийн ХОС ХХК",
+        value: 437500,
+        id : 20,
+      },{
+        category: "Улаанбаатар хотын банк ➡️ Си И Си Групп ХХК",
+        value: 488750,
+        id : 21,
+      },{
+        category: "Улаанбаатар хотын банк ➡️ Си Эн Би Коансалтинг ХХК",
+        value: 539500,
+        id : 22,
+      },
+    ],
+
+    },
+    {
+      category: "2020",
+      value: 1,
+      sliceSettings: {
+        fill: "#606b00",
+      },
+      breakdown: [{
+        category: "Улаанбаатар хотын банк ➡️ Худалдаа хөгжлийн банк",
+        value: 2070912,
+        id : 23,
+      },{
+        category: "Монгол банк ➡️ Ти Ди Би секьюритис ХХК",
+        value: 421241,
+        id : 24,
+      },{
+        category: "Хувь хүн ➡️ Ти Ди Би секьюритис ХХК",
+        value: 644,
+        id : 25,
+      },
+    ],
+
+    },
+    {
+      category: "2021",
+      value: 1,
+      sliceSettings: {
+        fill: "#c05e1f",
+      },
+      breakdown: [{
+        category: "Ти Ди Би секьюритис ХХК Юнайтэд бэнкинг корпорэйшн",
+        value: 1232785,
+        id : 26,
+      },{
+        category: "Худалдаа хөгжлийн банк ➡️ Си Эн Би Консалтинг ХХК",
+        value: 644,
+        id : 27,
+      },
+    ],
+
+    },
+]
+    
+    // Create root element
+    // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+    var root = am5.Root.new("chartdiv");
+    
+    
+    // Set themes
+    // https://www.amcharts.com/docs/v5/concepts/themes/
+    root.setThemes([
+      am5themes_Animated.new(root)
+    ]);
+    
+    // Create wrapper container
+    var container = root.container.children.push(am5.Container.new(root, {
+      width: am5.p100,
+      height: am5.p100,
+      layout: root.horizontalLayout
+    }));
+    
+    
+    // ==============================================
+    // Column chart
+    // ==============================================
+    
+    // Create chart
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/
+    var columnChart = container.children.push(am5xy.XYChart.new(root, {
+      width: am5.p50,
+      panX: false,
+      panY: false,
+      wheelX: "none",
+      wheelY: "none",
+      layout: root.verticalLayout
+    }));
+    
+    // Create axes
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+    var yAxis = columnChart.yAxes.push(am5xy.CategoryAxis.new(root, {
+      categoryField: "category",
+      renderer: am5xy.AxisRendererY.new(root, {})
+    }));
+    
+    //xAxis.data.setAll(data);
+    
+    var xAxis = columnChart.xAxes.push(am5xy.ValueAxis.new(root, {
+      renderer: am5xy.AxisRendererX.new(root, {})
+    }));
+    
+    
+    // Add series
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+    var columnSeries = columnChart.series.push(am5xy.ColumnSeries.new(root, {
+      name: name,
+      xAxis: xAxis,
+      yAxis: yAxis,
+      valueXField: "value",
+      categoryYField: "category"
+    }));
+    
+    columnSeries.columns.template.setAll({
+      tooltipText: "{categoryY}: {valueX}"
+    });
+    
+    //series.data.setAll(data);
+    
+    // Make stuff animate on load
+    // https://www.amcharts.com/docs/v5/concepts/animations/
+    columnChart.appear(1000, 100);
+    
+    
+    // ==============================================
+    // Column chart
+    // ==============================================
+    
+    var pieChart = container.children.push( 
+      am5percent.PieChart.new(root, {
+        width: am5.p50,
+        innerRadius: am5.percent(50)
+      }) 
+    );
+    
+    // Create series
+    var pieSeries = pieChart.series.push(
+      am5percent.PieSeries.new(root, {
+        valueField: "value",
+        categoryField: "category"
+      })
+    );
+    
+    pieSeries.slices.template.setAll({
+      templateField: "sliceSettings",
+      strokeOpacity: 0,
+      tooltipText: ""
+    });
+    
+    var currentSlice;
+    pieSeries.slices.template.on("active", function(active, slice) {
+      if (currentSlice && currentSlice != slice && active) {
+        currentSlice.set("active", false)
+      }
+      
+      var color = slice.get("fill");
+    
+      label1.setAll({
+        fill: color,
+        // text: root.numberFormatter.format(slice.dataItem.get("valuePercentTotal"), "#.'%'")
+        text :  slice.dataItem.get("category")
+      });
+      
+      // label2.set("text", slice.dataItem.get("category"));
+      
+      columnSeries.columns.template.setAll({
+        fill: slice.get("fill"),
+        stroke: slice.get("fill"),
+      });
+      
+      columnSeries.columns.template.events.on("click", function(ev) {
+        console.log("clicked :P ", ev.target.dataItem.dataContext);
+        var test = text_data.map((val, ind, arr) => {
+          if(val.id === ev.target.dataItem.dataContext.id) {
+            console.log("test : ", val);
+            document.getElementById("text_id").innerHTML= val.inner_text;
+            return val
+          }
+        })
+        // console.log("test : ", test)
+      })
+
+      columnSeries.data.setAll(slice.dataItem.dataContext.breakdown);
+      yAxis.data.setAll(slice.dataItem.dataContext.breakdown);
+      
+      currentSlice = slice;
+    });
+    
+    pieSeries.labels.template.set("forceHidden", true);
+    pieSeries.ticks.template.set("forceHidden", true);
+    
+    pieSeries.data.setAll(data);
+    
+    // Add label
+    var label1 = pieChart.seriesContainer.children.push(am5.Label.new(root, {
+      text: "",
+      fontSize: 35,
+      fontweight: "bold",
+      centerX: am5.p50,
+      centerY: am5.p50
+    }));
+    
+    var label2 = pieChart.seriesContainer.children.push(am5.Label.new(root, {
+      text: "",
+      fontSize: 12,
+      centerX: am5.p50,
+      centerY: am5.p50,
+      dy: 30
+    }));
+    
+    // Pre-select first slice
+    pieSeries.events.on("datavalidated", function() {
+      pieSeries.slices.getIndex(0).set("active", true);
+    });
+    
+    }); // end am5.ready()
+    </script>
+    
+<body>
+    <div id="chartdiv"></div>
+    <div id="text_id"></div>
+</body>
+</html>
